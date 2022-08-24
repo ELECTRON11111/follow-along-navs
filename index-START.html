@@ -87,7 +87,11 @@
     console.log('Enter!');
     this.classList.add('trigger-enter');
     // The 'this' of a function is inherited from its parent if an arrow function is used.
-    setTimeout(() => this.classList.add('trigger-enter-active'), 150);
+    setTimeout(() => {
+      // So if 'this' contains 'trigger-enter' class, then we can now add 'trigger-enter-active' class
+      // This is to prevent the content coming before the background.
+      this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active');
+    }, 150);
     // Get the white background to the page
     background.classList.add('open');
     const dropdown = this.querySelector('.dropdown');
